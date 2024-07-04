@@ -104,7 +104,7 @@ public class PARAMProducerTest {
 	
 	@Test
 	public void testCase2() throws Exception {
-		Formulas formulas = readModelAndGetFormulas("Test2.txt", false);
+		Formulas formulas = readModelAndGetFormulas("GoalModel.txt", false);
 
 		assertEq("", formulas.reliability);
 		assertEq("", formulas.cost);

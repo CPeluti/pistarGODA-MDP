@@ -1,12 +1,9 @@
 package br.unb.cic.goda.rtgoretoprism.generator.goda.writer;
 
 import br.unb.cic.goda.rtgoretoprism.generator.CodeGenerationException;
-import br.unb.cic.goda.rtgoretoprism.util.FileUtility;
+import org.apache.commons.io.IOUtils;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 
 public class ManageWriter {
 
@@ -24,9 +21,12 @@ public class ManageWriter {
     }
 
     public static String readFileAsString(String filePath) throws CodeGenerationException {
+        InputStream inputStream = null;
         String res = null;
         try {
-            res = FileUtility.readFileAsString(filePath);
+            ClassLoader classLoader = (new ManageWriter()).getClass().getClassLoader();
+            inputStream = classLoader.getResourceAsStream(filePath);
+            res = IOUtils.toString(inputStream);
         } catch (IOException e) {
             String msg = "Error: file " + filePath + " not found.";
             System.out.println(msg);

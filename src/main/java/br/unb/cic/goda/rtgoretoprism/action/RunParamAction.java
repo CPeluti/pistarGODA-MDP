@@ -32,7 +32,7 @@ public class RunParamAction {
     public void run() throws Exception {
         if (selectedActors.isEmpty())
             return;
-        String sourceFolder = "src/main/resources/TemplateInput";
+        String sourceFolder = "TemplateInput";
         String targetFolder = typeModel.toLowerCase();
         String toolsFolder = "tools";
         PARAMProducer producer = new PARAMProducer(selectedActors, selectedGoals, isParam, sourceFolder, targetFolder, toolsFolder, this.typeModel);
