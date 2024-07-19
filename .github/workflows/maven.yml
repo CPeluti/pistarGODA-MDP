@@ -10,8 +10,6 @@ name: Main
 
 on:
   push:
-    branches:
-      - master
     tags:
       - "v*.*.*"
 
