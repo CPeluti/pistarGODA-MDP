@@ -141,7 +141,8 @@ public class FileUtility {
 			throw ioe;
 		}
 		finally {
-			reader.close();
+			if(reader != null)
+				reader.close();
 		}
 		
 		return fileData.toString();

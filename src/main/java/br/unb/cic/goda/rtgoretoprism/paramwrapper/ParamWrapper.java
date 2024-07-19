@@ -1,10 +1,6 @@
 package br.unb.cic.goda.rtgoretoprism.paramwrapper;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -13,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import br.unb.cic.goda.rtgoretoprism.generator.CodeGenerationException;
+import org.apache.commons.io.FileUtils;
 
 /**
  * Façade to a PARAM executable.
@@ -78,10 +75,22 @@ public class ParamWrapper implements ParametricModelChecker {
     private String invokeParametricModelChecker(String modelPath,
                                                 String propertyPath,
                                                 String resultsPath) throws IOException {
-        String commandLine = paramPath + " "
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(paramPath);
+        String tmpdir = System.getProperty("java.io.tmpdir");
+        String newParamPath = tmpdir + paramPath;
+
+        File targetFile = new File(newParamPath);
+        if(inputStream != null) {
+            Files.deleteIfExists(targetFile.toPath());
+            FileUtils.copyInputStreamToFile(inputStream, targetFile);
+        }
+
+
+        String commandLine = newParamPath + " "
                 + modelPath + " "
                 + propertyPath + " "
                 + "--result-file " + resultsPath;
+
         return invokeAndGetResult(commandLine, resultsPath + ".out");
     }
 
