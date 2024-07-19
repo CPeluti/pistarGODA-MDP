@@ -9,7 +9,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>unb.cic</groupId>
   <artifactId>pistarGODA-MDP</artifactId>
-  <version>0.1.0</version>
+  <version>1.0.0</version>
   <build>
     <plugins>
       <plugin>
@@ -46,10 +46,10 @@
         </executions>
         <configuration>
           <flags>-Xmx1G</flags>
-          <inputFile>target/pistarGODA-MDP-0.1.0.jar</inputFile>
+          <inputFile>target/pistarGODA-MDP-1.0.0.jar</inputFile>
           <classifier>shaded</classifier>
           <allowOtherTypes>true</allowOtherTypes>
-          <programFile>nifty-executable</programFile>
+          <programFile>goda</programFile>
           <scriptFile>src/packaging/script.sh</scriptFile>
         </configuration>
       </plugin>
